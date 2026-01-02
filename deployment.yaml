@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: addtask-todo-app
+  labels:
+    app: myapp-add
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp-add
+  template:
+    metadata:
+      labels:
+        app: myapp-add
+    spec:
+      containers:
+      - name: todoapp
+        image: devacrnew.azurecr.io/addtask-todo-app:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: CONNECTION_STRING
+          value: "Driver={ODBC Driver 18 for SQL Server};Server=tcp:sonar-sql-new.database.windows.net,1433;Database=rohit;Uid=admin12;Pwd=Pratik9506;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+     
